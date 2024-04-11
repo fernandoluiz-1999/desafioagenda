@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda</title>
+</head>
+<body>
+    <script>
+        let contatos = [];
+
+function adicionarContato() {
+    let nome = prompt("Digite o nome do contato:");
+    let numero = prompt("Digite o número do contato:");
+    let email = prompt("Digite o email do contato:");
+    let dataHora = new Date().toLocaleString(); // Captura data e hora atual
+
+    let novoContato = {
+        nome: nome,
+        numero: numero,
+        email: email,
+        dataHora: dataHora
+    };
+
+    contatos.push(novoContato);
+    alert("Contato adicionado com sucesso.");
+}
+
+function visualizarContatos() {
+    if (contatos.length === 0) {
+        alert("Nenhum contato na agenda.");
+    } else {
+        alert("Lista de contatos:");
+        contatos.forEach((contato, index) => {
+            alert(`${index + 1}. Nome: ${contato.nome}, Número: ${contato.numero}, Email: ${contato.email}, Data/Hora: ${contato.dataHora}`);
+        });
+    }
+}
+
+function editarContato() {
+    visualizarContatos();
+    if (contatos.length === 0) return;
+
+    let indice = parseInt(prompt("Digite o número do contato que deseja editar:")) - 1;
+    if (indice >= 0 && indice < contatos.length) {
+        let novoNome = prompt("Digite o novo nome do contato:");
+        let novoNumero = prompt("Digite o novo número do contato:");
+        let novoEmail = prompt("Digite o novo email do contato:");
+
+        contatos[indice].nome = novoNome;
+        contatos[indice].numero = novoNumero;
+        contatos[indice].email = novoEmail;
+
+        alert("Contato editado com sucesso.");
+    } else {
+        alert("Índice inválido.");
+    }
+}
+
+function excluirContato() {
+    visualizarContatos();
+    if (contatos.length === 0) return;
+
+    let indice = parseInt(prompt("Digite o número do contato que deseja excluir:")) - 1;
+    if (indice >= 0 && indice < contatos.length) {
+        contatos.splice(indice, 1);
+        alert("Contato excluído com sucesso.");
+    } else {
+        alert("Índice inválido.");
+    }
+}
+
+function menu() {
+    alert("\n=== Agenda de Contatos ===");
+    alert("1. Adicionar contato");
+    alert("2. Visualizar contatos");
+    alert("3. Editar contato");
+    alert("4. Excluir contato");
+    alert("5. Sair");
+}
+
+function main() {
+    while (true) {
+        menu();
+        let opcao = parseInt(prompt("Escolha uma opção:"));
+
+        switch (opcao) {
+            case 1:
+                adicionarContato();
+                break;
+            case 2:
+                visualizarContatos();
+                break;
+            case 3:
+                editarContato();
+                break;
+            case 4:
+                excluirContato();
+                break;
+            case 5:
+                console.log("Saindo da agenda.");
+                return;
+            default:
+                console.log("Opção inválida. Por favor, escolha novamente.");
+        }
+    }
+}
+
+main();
+
+    </script>
+</body>
+</html>
