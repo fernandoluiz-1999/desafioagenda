@@ -1,2 +1,2 @@
 # desafioagenda
-Criação de agenda de contatos em JS.
+Criação de agenda de contatos em JS e HTML.
